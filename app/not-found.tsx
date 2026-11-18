@@ -23,7 +23,7 @@ export default function NotFound() {
       <p className="av-404-text">
         Ese cartucho no está en el vault. Revisa el enlace o elige otro juego de la biblioteca.
       </p>
-      <Link href="/" className="btn lg">
+      <Link href="/games" className="btn lg">
         VOLVER A LA BIBLIOTECA
       </Link>
     </section>
