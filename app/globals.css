@@ -19,7 +19,10 @@
   --bronze: #d97a3a;
   --line: rgba(0, 245, 255, 0.18);
   --line-2: rgba(255, 255, 255, 0.06);
-  --pixel: var(--font-press-start), system-ui, monospace;
+  /* Literal family name (declared by next/font) instead of var(--font-press-start):
+     next/font appends a size-adjusted Arial fallback, which renders glyphs missing
+     from the latin subset ("≡", "▾", "⌕") wider than the reference's system-ui. */
+  --pixel: "Press Start 2P", system-ui, monospace;
   --mono: var(--font-jetbrains-mono), var(--font-courier-prime), "Courier New", monospace;
 }
 
@@ -241,6 +244,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    text-align: center; /* <button> default; needed when .btn is a <Link> */
     gap: 10px;
     padding: 12px 20px;
     font-family: var(--pixel);
@@ -290,6 +294,7 @@
   .av-hero h1 {
     font-family: var(--pixel);
     font-size: clamp(28px, 6vw, 64px);
+    font-weight: 700; /* UA default for h1; Tailwind preflight resets it */
     letter-spacing: 0.06em;
     margin: 0;
     background: linear-gradient(180deg, #fff 0%, var(--cyan) 60%, var(--magenta) 110%);
@@ -329,6 +334,7 @@
   .av-search:focus-within { border-color: var(--cyan); box-shadow: 0 0 12px rgba(0,245,255,0.35); }
   .av-search input {
     flex: 1; background: transparent; border: 0; outline: 0;
+    padding: 1px 2px; /* UA default for inputs; Tailwind preflight resets it */
     color: var(--ink); font-size: 13px; letter-spacing: 0.04em;
   }
   .av-search input::placeholder { color: var(--ink-faint); }
@@ -979,6 +985,34 @@
     clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
   }
   @keyframes spinpix { to { transform: rotate(360deg); } }
+
+  /* 404 — a CRT with no signal */
+  .av-404 {
+    max-width: 640px;
+    margin: 56px auto 72px;
+    padding: 0 16px;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center;
+  }
+  .av-404-tv { width: min(100%, 380px); padding: 18px; }
+  .av-404-static {
+    position: absolute; inset: -50%;
+    background:
+      repeating-radial-gradient(circle at 17% 32%, rgba(255,255,255,0.10) 0 1px, transparent 1px 3px),
+      repeating-radial-gradient(circle at 73% 61%, rgba(255,255,255,0.08) 0 1px, transparent 1px 4px);
+    animation: av-static 0.25s steps(4) infinite;
+  }
+  @keyframes av-static {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(-6%, 4%); }
+    50% { transform: translate(5%, -3%); }
+    75% { transform: translate(-3%, -5%); }
+  }
+  .av-404-signal { font-size: 18px; }
+  .av-404-channel { font-size: 9px; color: var(--ink-faint); letter-spacing: 0.2em; margin-top: 12px; }
+  .av-404-led::before { background: var(--magenta) !important; box-shadow: 0 0 6px var(--magenta) !important; animation: blink 1.2s steps(1) infinite; }
+  .av-404-title { font-size: clamp(16px, 4vw, 24px); line-height: 1.5; margin: 40px 0 14px; }
+  .av-404-text { color: var(--ink-dim); max-width: 44ch; line-height: 1.7; margin: 0 0 28px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
