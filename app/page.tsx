@@ -1,16 +1,15 @@
+import { Library } from "@/components/library";
+
 export default function Home() {
   return (
-    <main className="av-main">
+    <div className="fade-in">
       <section className="av-hero">
-        <h1>Arcade Vault</h1>
-        <p className="sub">
-          Inserta una moneda <span className="blink">▮</span>
-        </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          <button className="btn lg pulse">Jugar ahora</button>
-          <button className="btn magenta lg">Ver salón de la fama</button>
+        <h1 className="flicker">ARCADE VAULT</h1>
+        <div className="sub">
+          INSERTA UNA MONEDA PARA JUGAR <span className="blink">_</span>
         </div>
       </section>
-    </main>
+      <Library />
+    </div>
   );
 }
