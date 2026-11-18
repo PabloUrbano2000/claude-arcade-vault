@@ -19,6 +19,9 @@ Development follows **Spec Driven Design** using the `/spec` and `/spec-impl` sk
 
 There is no test runner configured yet.
 
+## Skills
+Usa siempre /frontend-design para los diseños.
+
 ## Stack and conventions
 
 - **Next.js 16.4 App Router**, React 19.3, TypeScript strict. This Next version differs from older releases. Check `node_modules/next/dist/docs/` before using any Next API (see AGENTS.md).
